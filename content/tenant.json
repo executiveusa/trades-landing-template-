@@ -61,22 +61,22 @@
       "id": "residential-1",
       "title": "Casa de Dos Pisos en Marina Vallarta",
       "description": "Repellado, aplanado y aplicación de yeso decorativo en todos los niveles.",
-      "beforeImg": "/images/before-1.jpg",
-      "afterImg": "/images/after-1.jpg"
+      "beforeImg": "https://images.unsplash.com/photo-1504573876775-fc31db5000a9?w=800&q=80",
+      "afterImg": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
     },
     {
       "id": "commercial-1",
       "title": "Local Comercial en Centro",
       "description": "Acabados profesionales y pintura para local de ventas. Entrega en 3 semanas.",
-      "beforeImg": "/images/before-2.jpg",
-      "afterImg": "/images/after-2.jpg"
+      "beforeImg": "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80",
+      "afterImg": "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80"
     },
     {
       "id": "restoration-1",
       "title": "Restauración de Fachada",
       "description": "Reparación de daños por humedad y aplicación de yeso exterior protector.",
-      "beforeImg": "/images/before-3.jpg",
-      "afterImg": "/images/after-3.jpg"
+      "beforeImg": "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&q=80",
+      "afterImg": "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80"
     }
   ],
   "testimonials": [
