@@ -1,0 +1,128 @@
+{
+  "businessName": "Yesero Puerto Vallarta",
+  "tradeName": "Yeso & Acabados",
+  "tagline": "Acabados profesionales en Puerto Vallarta",
+  "location": "Puerto Vallarta, Jalisco",
+  "city": "Puerto Vallarta",
+  "serviceAreaTitle": "Cobertura de Servicios",
+  "serviceAreas": [
+    "Puerto Vallarta",
+    "Nuevo Vallarta",
+    "Bahía de Banderas",
+    "Marina Vallarta",
+    "Ixtapa",
+    "Las Juntas",
+    "Bucerías",
+    "Sayulita"
+  ],
+  "phone": "+1-800-000-0000",
+  "whatsappNumber": "525212345678",
+  "whatsappMessage": "Hola, vi tu página y necesito una cotización. Estoy en {zona}. El trabajo es: {servicio}.",
+  "hero": {
+    "h1": "Yeso & Acabados Profesionales en Puerto Vallarta",
+    "subhead": "Acabados de calidad, materiales duraderos, y precisión garantizada. Desde repellado hasta aplicaciones decorativas.",
+    "cta1": "Obtener Cotización",
+    "cta2": "Contáctanos por WhatsApp"
+  },
+  "services": [
+    {
+      "id": "repellado",
+      "name": "Repellado & Aplanado",
+      "description": "Preparación de superficies con técnicas profesionales para un acabado uniforme y duradero."
+    },
+    {
+      "id": "yeso",
+      "name": "Aplicación de Yeso",
+      "description": "Yeso estructural y decorativo. Ideal para interiores, molduras, y acabados de alta calidad."
+    },
+    {
+      "id": "pintura",
+      "name": "Pintura & Acabados",
+      "description": "Pintura profesional con productos de calidad. Interiores, exteriores, y efectos especiales."
+    },
+    {
+      "id": "estructural",
+      "name": "Reparaciones Estructurales",
+      "description": "Grietas, daños por humedad, y refuerzos. Soluciones duraderas y seguras."
+    },
+    {
+      "id": "decorativo",
+      "name": "Acabados Decorativos",
+      "description": "Texturas, marmolados, y efectos artísticos para darle carácter a tus espacios."
+    },
+    {
+      "id": "mantenimiento",
+      "name": "Mantenimiento & Limpieza",
+      "description": "Mantenimiento preventivo y correctivo de superficies y acabados."
+    }
+  ],
+  "projects": [
+    {
+      "id": "residential-1",
+      "title": "Casa de Dos Pisos en Marina Vallarta",
+      "description": "Repellado, aplanado y aplicación de yeso decorativo en todos los niveles.",
+      "beforeImg": "/images/before-1.jpg",
+      "afterImg": "/images/after-1.jpg"
+    },
+    {
+      "id": "commercial-1",
+      "title": "Local Comercial en Centro",
+      "description": "Acabados profesionales y pintura para local de ventas. Entrega en 3 semanas.",
+      "beforeImg": "/images/before-2.jpg",
+      "afterImg": "/images/after-2.jpg"
+    },
+    {
+      "id": "restoration-1",
+      "title": "Restauración de Fachada",
+      "description": "Reparación de daños por humedad y aplicación de yeso exterior protector.",
+      "beforeImg": "/images/before-3.jpg",
+      "afterImg": "/images/after-3.jpg"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "client-1",
+      "name": "María González",
+      "role": "Propietaria, Marina Vallarta",
+      "text": "Excelente trabajo. El equipo fue puntual, limpio y muy profesional. Recomendado 100%.",
+      "rating": 5
+    },
+    {
+      "id": "client-2",
+      "name": "Carlos Rodríguez",
+      "role": "Gerente, Local Comercial",
+      "text": "Acabados de primera calidad. Cumplieron el plazo y dejaron todo impecable.",
+      "rating": 5
+    },
+    {
+      "id": "client-3",
+      "name": "Ana Martínez",
+      "role": "Dueña de Casa, Nuevo Vallarta",
+      "text": "Presupuesto justo y trabajo excepcional. Volvería a contratar sin dudarlo.",
+      "rating": 5
+    }
+  ],
+  "contactForm": {
+    "fields": [
+      { "name": "nombre", "label": "Nombre", "required": true },
+      { "name": "email", "label": "Email", "required": true },
+      { "name": "telefono", "label": "Teléfono", "required": false },
+      { "name": "zona", "label": "Zona", "required": true },
+      { "name": "descripcion", "label": "Descripción del Trabajo", "required": true }
+    ],
+    "messageSuccess": "¡Gracias! Nos pondremos en contacto pronto.",
+    "messageError": "Hubo un error. Por favor intenta nuevamente."
+  },
+  "cta": {
+    "text": "¿Listo para transformar tu espacio?",
+    "button": "Solicitar Cotización",
+    "subtext": "Respuestas rápidas y presupuestos sin compromiso."
+  },
+  "theme": {
+    "accent": "#0ea5e9",
+    "background": "#faf9f7",
+    "text": "#1a1a1a",
+    "textLight": "#666666",
+    "border": "#e5e5e5"
+  }
+}
