@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { getTenant } from '@/lib/tenant'
+import { useLang } from '@/lib/lang'
 
 type FormData = {
   nombre: string
@@ -13,6 +14,7 @@ type FormData = {
 
 export default function Contact() {
   const tenant = getTenant()
+  const { lang } = useLang()
   const [formData, setFormData] = useState<FormData>({
     nombre: '',
     email: '',
@@ -35,6 +37,16 @@ export default function Contact() {
     setIsLoading(true)
 
     try {
+      // Analytics tracking
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'contact_form_submit', {
+          contact_method: 'form',
+          language: lang,
+          service_area: formData.zona,
+          timestamp: new Date().toISOString()
+        })
+      }
+
       // Simulate API call or send to webhook
       console.log('Form submitted:', formData)
 
@@ -62,9 +74,13 @@ export default function Contact() {
       <div className="container-safe">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-brand-text">Solicita tu Cotización</h2>
+            <h2 className="text-brand-text">
+              {lang === 'en' ? 'Request a Quote' : 'Solicita tu Cotización'}
+            </h2>
             <p className="text-lg text-brand-text-light mt-4">
-              Llena el formulario y nos pondremos en contacto en 24 horas.
+              {lang === 'en'
+                ? 'Fill out the form and we will get back to you within 24 hours.'
+                : 'Llena el formulario y nos pondremos en contacto en 24 horas.'}
             </p>
           </div>
 
@@ -72,10 +88,14 @@ export default function Contact() {
             <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
               <div className="text-4xl mb-4">✓</div>
               <h3 className="text-xl font-semibold text-green-900 mb-2">
-                {tenant.contactForm.messageSuccess}
+                {lang === 'en'
+                  ? tenant.contactForm.messageSuccess_en || tenant.contactForm.messageSuccess
+                  : tenant.contactForm.messageSuccess}
               </h3>
               <p className="text-green-700">
-                También puedes contactarnos directamente por WhatsApp para una respuesta más rápida.
+                {lang === 'en'
+                  ? 'You can also contact us directly via WhatsApp for a faster response.'
+                  : 'También puedes contactarnos directamente por WhatsApp para una respuesta más rápida.'}
               </p>
             </div>
           ) : (
@@ -84,7 +104,10 @@ export default function Contact() {
                 {/* Nombre */}
                 <div>
                   <label htmlFor="nombre" className="block text-sm font-medium text-brand-text mb-2">
-                    Nombre *
+                    {lang === 'en'
+                      ? tenant.contactForm.fields.find(f => f.name === 'nombre')?.label_en || 'Name'
+                      : tenant.contactForm.fields.find(f => f.name === 'nombre')?.label || 'Nombre'}
+                    {' '}*
                   </label>
                   <input
                     type="text"
@@ -94,14 +117,17 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white text-brand-text"
-                    placeholder="Tu nombre"
+                    placeholder={lang === 'en' ? 'Your name' : 'Tu nombre'}
                   />
                 </div>
 
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-brand-text mb-2">
-                    Email *
+                    {lang === 'en'
+                      ? tenant.contactForm.fields.find(f => f.name === 'email')?.label_en || 'Email'
+                      : tenant.contactForm.fields.find(f => f.name === 'email')?.label || 'Email'}
+                    {' '}*
                   </label>
                   <input
                     type="email"
@@ -111,7 +137,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white text-brand-text"
-                    placeholder="tu@email.com"
+                    placeholder={lang === 'en' ? 'you@example.com' : 'tu@email.com'}
                   />
                 </div>
               </div>
@@ -120,7 +146,9 @@ export default function Contact() {
                 {/* Teléfono */}
                 <div>
                   <label htmlFor="telefono" className="block text-sm font-medium text-brand-text mb-2">
-                    Teléfono (Opcional)
+                    {lang === 'en'
+                      ? tenant.contactForm.fields.find(f => f.name === 'telefono')?.label_en || 'Phone (Optional)'
+                      : tenant.contactForm.fields.find(f => f.name === 'telefono')?.label || 'Teléfono (Opcional)'}
                   </label>
                   <input
                     type="tel"
@@ -129,14 +157,17 @@ export default function Contact() {
                     value={formData.telefono}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white text-brand-text"
-                    placeholder="+52..."
+                    placeholder={lang === 'en' ? '+52...' : '+52...'}
                   />
                 </div>
 
                 {/* Zona */}
                 <div>
                   <label htmlFor="zona" className="block text-sm font-medium text-brand-text mb-2">
-                    Zona *
+                    {lang === 'en'
+                      ? tenant.contactForm.fields.find(f => f.name === 'zona')?.label_en || 'Zone'
+                      : tenant.contactForm.fields.find(f => f.name === 'zona')?.label || 'Zona'}
+                    {' '}*
                   </label>
                   <select
                     id="zona"
@@ -146,7 +177,7 @@ export default function Contact() {
                     required
                     className="w-full px-4 py-3 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white text-brand-text"
                   >
-                    <option value="">Selecciona una zona</option>
+                    <option value="">{lang === 'en' ? 'Select a zone' : 'Selecciona una zona'}</option>
                     {tenant.serviceAreas.map((area) => (
                       <option key={area} value={area}>
                         {area}
@@ -159,7 +190,10 @@ export default function Contact() {
               {/* Descripción */}
               <div>
                 <label htmlFor="descripcion" className="block text-sm font-medium text-brand-text mb-2">
-                  Descripción del Trabajo *
+                  {lang === 'en'
+                    ? tenant.contactForm.fields.find(f => f.name === 'descripcion')?.label_en || 'Work Description'
+                    : tenant.contactForm.fields.find(f => f.name === 'descripcion')?.label || 'Descripción del Trabajo'}
+                  {' '}*
                 </label>
                 <textarea
                   id="descripcion"
@@ -169,7 +203,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className="w-full px-4 py-3 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent bg-white text-brand-text resize-vertical"
-                  placeholder="Cuéntanos qué necesitas..."
+                  placeholder={lang === 'en' ? "Tell us what you need..." : 'Cuéntanos qué necesitas...'}
                 />
               </div>
 
@@ -179,11 +213,13 @@ export default function Contact() {
                 disabled={isLoading}
                 className="btn-primary w-full"
               >
-                {isLoading ? 'Enviando...' : 'Enviar Solicitud'}
+                {isLoading
+                  ? lang === 'en' ? 'Sending...' : 'Enviando...'
+                  : lang === 'en' ? 'Submit Request' : 'Enviar Solicitud'}
               </button>
 
               <p className="text-center text-sm text-brand-text-light">
-                O contacta directamente:{' '}
+                {lang === 'en' ? 'Or contact directly:' : 'O contacta directamente:'}{' '}
                 <a href={`tel:${tenant.phone}`} className="text-brand-accent font-semibold hover:underline">
                   {tenant.phone}
                 </a>

@@ -1,10 +1,18 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { BlogCard, BlogArticle } from '@/components/BlogCard'
+import { useLang } from '@/lib/lang'
 
-export const metadata: Metadata = {
-  title: 'Blog | Puerto Vallarta Yeso & Acabados',
-  description: 'Consejos y recomendaciones sobre diseño, mantenimiento de casa y real estate en Puerto Vallarta',
+export async function generateMetadata(props: any): Promise<Metadata> {
+  const { searchParams } = props as any
+  const lang = typeof searchParams === 'object' && searchParams.lang === 'en' ? 'en' : 'es'
+
+  return {
+    title: lang === 'en' ? 'Blog | Puerto Vallarta Plaster & Finishes' : 'Blog | Puerto Vallarta Yeso & Acabados',
+    description: lang === 'en'
+      ? 'Tips and recommendations about interior design, home maintenance, and real estate in Puerto Vallarta'
+      : 'Consejos y recomendaciones sobre diseño, mantenimiento de casa y real estate en Puerto Vallarta',
+  }
 }
 
 function getBlogArticles(): BlogArticle[] {
@@ -16,6 +24,7 @@ function getBlogArticles(): BlogArticle[] {
 
 export default function BlogPage() {
   const articles = getBlogArticles()
+  const { lang } = useLang()
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[var(--brand-bg)] to-white">
@@ -23,11 +32,12 @@ export default function BlogPage() {
       <section className="py-20 border-b border-[var(--brand-border)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl font-bold text-[var(--brand-text)] mb-4">
-            Blog de Diseño & Real Estate
+            {lang === 'en' ? 'Design & Real Estate Blog' : 'Blog de Diseño & Real Estate'}
           </h1>
           <p className="text-xl text-gray-600">
-            Consejos, recomendaciones e información valiosa sobre diseño de interiores, 
-            mantenimiento de hogar y el mercado inmobiliario de Puerto Vallarta.
+            {lang === 'en'
+              ? 'Tips, recommendations and valuable information about interior design, home maintenance, and the real estate market in Puerto Vallarta.'
+              : 'Consejos, recomendaciones e información valiosa sobre diseño de interiores, mantenimiento de hogar y el mercado inmobiliario de Puerto Vallarta.'}
           </p>
         </div>
       </section>
@@ -53,16 +63,18 @@ export default function BlogPage() {
       <section className="py-16 bg-[var(--brand-accent)] bg-opacity-5 border-t border-[var(--brand-border)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-[var(--brand-text)] mb-4">
-            ¿Listo para tu Transformación?
+            {lang === 'en' ? 'Ready for Your Transformation?' : '¿Listo para tu Transformación?'}
           </h2>
           <p className="text-gray-600 mb-8">
-            Si tienes preguntas sobre tu proyecto, nuestro equipo está aquí para ayudarte.
+            {lang === 'en'
+              ? "If you have questions about your project, our team is here to help."
+              : "Si tienes preguntas sobre tu proyecto, nuestro equipo está aquí para ayudarte."}
           </p>
           <Link
             href="#contact"
             className="inline-block px-8 py-3 bg-[var(--brand-accent)] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
-            Solicitar Cotización
+            {lang === 'en' ? 'Request a Quote' : 'Solicitar Cotización'}
           </Link>
         </div>
       </section>

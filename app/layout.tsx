@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
 import { getTenant } from '@/lib/tenant'
 import './globals.css'
+import ClientLangProvider from '@/components/ClientLangProvider'
 
 const tenant = getTenant()
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: `${tenant.businessName} | ${tenant.tradeName}`,
@@ -28,6 +31,24 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        {/* Google Analytics */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX', {
+                'page_path': window.location.pathname,
+                'page_title': document.title
+              });
+            `,
+          }}
+        ></script>
         <style>{`
           :root {
             --brand-bg: ${tenant.theme.background};
@@ -62,7 +83,9 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-brand-bg text-brand-text antialiased">
-        {children}
+        <ClientLangProvider>
+          {children}
+        </ClientLangProvider>
       </body>
     </html>
   )

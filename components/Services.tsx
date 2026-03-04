@@ -1,17 +1,23 @@
 'use client'
 
 import { getTenant } from '@/lib/tenant'
+import { useLang } from '@/lib/lang'
 
 export default function Services() {
   const tenant = getTenant()
+  const { lang } = useLang()
 
   return (
     <section id="services" className="section-spacing bg-white">
       <div className="container-safe">
         <div className="text-center mb-12">
-          <h2 className="text-brand-text">Nuestros Servicios</h2>
+          <h2 className="text-brand-text">
+            {lang === 'en' ? 'Our Services' : 'Nuestros Servicios'}
+          </h2>
           <p className="text-lg text-brand-text-light mt-4 max-w-2xl mx-auto">
-            Soluciones completas de acabados para tu hogar o negocio en Puerto Vallarta.
+            {lang === 'en'
+              ? 'Complete finishing solutions for your home or business in Puerto Vallarta.'
+              : 'Soluciones completas de acabados para tu hogar o negocio en Puerto Vallarta.'}
           </p>
         </div>
 
@@ -23,9 +29,11 @@ export default function Services() {
                   <span className="text-xl">✓</span>
                 </div>
               </div>
-              <h3 className="text-brand-text mb-2">{service.name}</h3>
+              <h3 className="text-brand-text mb-2">
+                {lang === 'en' ? service.name_en || service.name : service.name}
+              </h3>
               <p className="text-brand-text-light text-sm leading-relaxed">
-                {service.description}
+                {lang === 'en' ? service.description_en || service.description : service.description}
               </p>
             </div>
           ))}
@@ -33,7 +41,7 @@ export default function Services() {
 
         <div className="text-center mt-12">
           <a href="#contact" className="btn-primary">
-            Solicitar Cotización Personalizada
+            {lang === 'en' ? 'Request a Custom Quote' : 'Solicitar Cotización Personalizada'}
           </a>
         </div>
       </div>

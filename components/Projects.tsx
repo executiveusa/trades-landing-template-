@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { getTenant } from '@/lib/tenant'
+import { useLang } from '@/lib/lang'
 
 function BeforeAfterSlider() {
   const [sliderPosition, setSliderPosition] = useState(50)
@@ -91,14 +92,19 @@ function BeforeAfterSlider() {
 
 export default function Projects() {
   const tenant = getTenant()
+  const { lang } = useLang()
 
   return (
     <section id="projects" className="section-spacing bg-brand-bg">
       <div className="container-safe">
         <div className="text-center mb-12">
-          <h2 className="text-brand-text">Proyectos Destacados</h2>
+          <h2 className="text-brand-text">
+            {lang === 'en' ? 'Featured Projects' : 'Proyectos Destacados'}
+          </h2>
           <p className="text-lg text-brand-text-light mt-4 max-w-2xl mx-auto">
-            Mira antes y después de nuestros trabajos recientes en Puerto Vallarta.
+            {lang === 'en'
+              ? 'See before-and-after of our recent work in Puerto Vallarta.'
+              : 'Mira antes y después de nuestros trabajos recientes en Puerto Vallarta.'}
           </p>
         </div>
 
@@ -119,7 +125,7 @@ export default function Projects() {
                 </p>
                 <div className="pt-4">
                   <a href="#contact" className="btn-secondary btn-sm">
-                    Proyecto Similar
+                    {lang === 'en' ? 'Similar Project' : 'Proyecto Similar'}
                   </a>
                 </div>
               </div>
@@ -130,7 +136,7 @@ export default function Projects() {
         {/* Additional thumbnail grid */}
         <div className="mt-16">
           <h3 className="text-2xl font-semibold text-brand-text mb-8">
-            Más de Nuestro Trabajo
+            {lang === 'en' ? 'More of Our Work' : 'Más de Nuestro Trabajo'}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((i) => (
@@ -140,7 +146,9 @@ export default function Projects() {
               >
                 <div className="text-center text-gray-400">
                   <div className="text-3xl mb-2">📷</div>
-                  <span className="text-sm">Proyecto {i}</span>
+                  <span className="text-sm">
+                    {lang === 'en' ? `Project ${i}` : `Proyecto ${i}`}
+                  </span>
                 </div>
               </div>
             ))}

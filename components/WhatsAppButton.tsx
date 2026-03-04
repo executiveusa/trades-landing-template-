@@ -3,6 +3,7 @@
 import { getTenant } from '@/lib/tenant'
 import { buildWhatsAppLink } from '@/lib/whatsapp'
 import { useEffect, useState } from 'react'
+import { useLang } from '@/lib/lang'
 
 export default function WhatsAppButton() {
   const tenant = getTenant()
@@ -17,9 +18,13 @@ export default function WhatsAppButton() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const { lang } = useLang()
+  const message = lang === 'en'
+    ? tenant.whatsappMessage_en || tenant.whatsappMessage
+    : tenant.whatsappMessage
   const whatsappLink = buildWhatsAppLink(
     tenant.whatsappNumber,
-    'Hola, vi tu página y necesito más información sobre vuestros servicios.'
+    message
   )
 
   return (
@@ -30,7 +35,7 @@ export default function WhatsAppButton() {
       className={`fixed bottom-6 right-6 z-40 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110 ${
         isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0 pointer-events-none'
       }`}
-      title="Contáctanos por WhatsApp"
+      title={lang === 'en' ? 'Contact us on WhatsApp' : 'Contáctanos por WhatsApp'}
     >
       <svg
         className="w-6 h-6"

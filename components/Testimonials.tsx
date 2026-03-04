@@ -1,17 +1,21 @@
 'use client'
 
 import { getTenant } from '@/lib/tenant'
+import { useLang } from '@/lib/lang'
 
 export default function Testimonials() {
   const tenant = getTenant()
+  const { lang } = useLang()
 
   return (
     <section className="section-spacing bg-white">
       <div className="container-safe">
         <div className="text-center mb-12">
-          <h2 className="text-brand-text">Lo Que Dicen Nuestros Clientes</h2>
+          <h2 className="text-brand-text">
+            {lang === 'en' ? 'What Our Clients Say' : 'Lo Que Dicen Nuestros Clientes'}
+          </h2>
           <p className="text-lg text-brand-text-light mt-4">
-            Confían en nuestro trabajo y experiencia.
+            {lang === 'en' ? 'They trust our work and expertise.' : 'Confían en nuestro trabajo y experiencia.'}
           </p>
         </div>
 
@@ -43,19 +47,27 @@ export default function Testimonials() {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div>
             <div className="text-3xl font-bold text-brand-accent">500+</div>
-            <p className="text-sm text-brand-text-light">Proyectos Completados</p>
+            <p className="text-sm text-brand-text-light">
+              {lang === 'en' ? 'Projects Completed' : 'Proyectos Completados'}
+            </p>
           </div>
           <div>
             <div className="text-3xl font-bold text-brand-accent">15+</div>
-            <p className="text-sm text-brand-text-light">Años de Experiencia</p>
+            <p className="text-sm text-brand-text-light">
+              {lang === 'en' ? 'Years of Experience' : 'Años de Experiencia'}
+            </p>
           </div>
           <div>
             <div className="text-3xl font-bold text-brand-accent">100%</div>
-            <p className="text-sm text-brand-text-light">Satisfacción Clientes</p>
+            <p className="text-sm text-brand-text-light">
+              {lang === 'en' ? 'Customer Satisfaction' : 'Satisfacción Clientes'}
+            </p>
           </div>
           <div>
             <div className="text-3xl font-bold text-brand-accent">24h</div>
-            <p className="text-sm text-brand-text-light">Respuesta Garantizada</p>
+            <p className="text-sm text-brand-text-light">
+              {lang === 'en' ? 'Guaranteed Response' : 'Respuesta Garantizada'}
+            </p>
           </div>
         </div>
       </div>

@@ -1,10 +1,14 @@
 {
   "businessName": "Yesero Puerto Vallarta",
+  "businessName_en": "Puerto Vallarta Plaster Co",
   "tradeName": "Yeso & Acabados",
+  "tradeName_en": "Plaster & Finishes",
   "tagline": "Acabados profesionales en Puerto Vallarta",
+  "tagline_en": "Professional finishes in Puerto Vallarta",
   "location": "Puerto Vallarta, Jalisco",
   "city": "Puerto Vallarta",
   "serviceAreaTitle": "Cobertura de Servicios",
+  "serviceAreaTitle_en": "Service Coverage",
   "serviceAreas": [
     "Puerto Vallarta",
     "Nuevo Vallarta",
@@ -16,29 +20,41 @@
     "Sayulita"
   ],
   "phone": "+1-800-000-0000",
+  "facebookUrl": "https://www.facebook.com/RayPlasterPV",
   "whatsappNumber": "525212345678",
   "whatsappMessage": "Hola, vi tu página y necesito una cotización. Estoy en {zona}. El trabajo es: {servicio}.",
+  "whatsappMessage_en": "Hi, I saw your website and I need a quote. I'm in {zona}. The job is: {servicio}.",
   "hero": {
-    "h1": "Yeso & Acabados Profesionales en Puerto Vallarta",
-    "subhead": "Acabados de calidad, materiales duraderos, y precisión garantizada. Desde repellado hasta aplicaciones decorativas.",
+    "h1": "Acabados de Yeso que Duran 20+ Años – Conoce a Ray",
+    "h1_en": "Plaster Finishes Built to Last 20+ Years – Meet Ray",
+    "subhead": "Durante más de 20 años, Ray ha transformado hogares y negocios en Puerto Vallarta con paredes impecables, acabados resistentes a la humedad tropical y texturas hermosas. La mayoría de cotizaciones en 24 horas. ¡Llama o WhatsApp ahora—primera consulta gratis!",
+    "subhead_en": "For 20+ years, Ray has delivered flawless walls and humidity-proof finishes to Puerto Vallarta homeowners and businesses. Fast quotes within 24 hours. Call or WhatsApp today—first consultation free!",
     "cta1": "Obtener Cotización",
-    "cta2": "Contáctanos por WhatsApp"
+    "cta1_en": "Get a Quote",
+    "cta2": "Contáctanos por WhatsApp",
+    "cta2_en": "Contact Us on WhatsApp"
   },
   "services": [
     {
       "id": "repellado",
       "name": "Repellado & Aplanado",
-      "description": "Preparación de superficies con técnicas profesionales para un acabado uniforme y duradero."
+      "name_en": "Skim Coating & Smoothing",
+      "description": "Preparación de superficies con técnicas profesionales para un acabado uniforme y duradero.",
+      "description_en": "Surface preparation using professional techniques for a uniform, long-lasting finish."
     },
     {
       "id": "yeso",
       "name": "Aplicación de Yeso",
-      "description": "Yeso estructural y decorativo. Ideal para interiores, molduras, y acabados de alta calidad."
+      "name_en": "Plaster Application",
+      "description": "Yeso estructural y decorativo. Ideal para interiores, molduras, y acabados de alta calidad.",
+      "description_en": "Structural and decorative plaster. Ideal for interiors, moldings, and high‑quality finishes."
     },
     {
       "id": "pintura",
       "name": "Pintura & Acabados",
-      "description": "Pintura profesional con productos de calidad. Interiores, exteriores, y efectos especiales."
+      "name_en": "Painting & Finishes",
+      "description": "Pintura profesional con productos de calidad. Interiores, exteriores, y efectos especiales.",
+      "description_en": "Professional painting with quality products. Interiors, exteriors, and special effects."
     },
     {
       "id": "estructural",
@@ -104,14 +120,16 @@
   ],
   "contactForm": {
     "fields": [
-      { "name": "nombre", "label": "Nombre", "required": true },
-      { "name": "email", "label": "Email", "required": true },
-      { "name": "telefono", "label": "Teléfono", "required": false },
-      { "name": "zona", "label": "Zona", "required": true },
-      { "name": "descripcion", "label": "Descripción del Trabajo", "required": true }
+      { "name": "nombre", "label": "Nombre", "label_en": "Name", "required": true },
+      { "name": "email", "label": "Email", "label_en": "Email", "required": true },
+      { "name": "telefono", "label": "Teléfono", "label_en": "Phone", "required": false },
+      { "name": "zona", "label": "Zona", "label_en": "Zone", "required": true },
+      { "name": "descripcion", "label": "Descripción del Trabajo", "label_en": "Work Description", "required": true }
     ],
     "messageSuccess": "¡Gracias! Nos pondremos en contacto pronto.",
-    "messageError": "Hubo un error. Por favor intenta nuevamente."
+    "messageSuccess_en": "Thank you! We'll be in touch soon.",
+    "messageError": "Hubo un error. Por favor intenta nuevamente.",
+    "messageError_en": "There was an error. Please try again."
   },
   "cta": {
     "text": "¿Listo para transformar tu espacio?",

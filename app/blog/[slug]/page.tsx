@@ -14,32 +14,39 @@ function getBlogArticle(slug: string): BlogArticle | null {
   return articles.find((article) => article.slug === slug) || null
 }
 
-export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
-): Promise<Metadata> {
-  const { slug } = await params
+export async function generateMetadata(props: any): Promise<Metadata> {
+  // `props` may contain promises depending on Next.js version
+  const { params, searchParams } = props as any
+  const slug = typeof params === 'object' ? (params.slug || (await params)?.slug) : undefined
   const article = getBlogArticle(slug)
   
+  const lang = typeof searchParams === 'object' && searchParams.lang === 'en' ? 'en' : 'es'
+
   if (!article) {
     return {
-      title: 'Artículo no encontrado',
+      title: lang === 'en' ? 'Article not found' : 'Artículo no encontrado',
     }
   }
 
+  const title = lang === 'en' ? article.title_en || article.title : article.title
+  const desc = lang === 'en' ? article.excerpt_en || article.excerpt : article.excerpt
+
   return {
-    title: `${article.title} | Blog`,
-    description: article.excerpt,
+    title: `${title} | Blog`,
+    description: desc,
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
+      title,
+      description: desc,
       images: [article.image],
       type: 'article',
     },
   }
 }
 
-export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+export default async function BlogArticlePage(props: any) {
+  const { params, searchParams } = props
+  const { slug } = typeof params === 'object' ? await params : params
+  const lang = searchParams && typeof searchParams.lang === 'string' && searchParams.lang === 'en' ? 'en' : 'es'
   const article = getBlogArticle(slug)
 
   if (!article) {
@@ -72,7 +79,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
         </div>
 
         <h1 className="text-5xl font-bold text-[var(--brand-text)] mb-4">
-          {article.title}
+          {lang === 'en' ? article.title_en || article.title : article.title}
         </h1>
 
         <div className="flex items-center justify-between border-t border-b border-[var(--brand-border)] py-4 mb-8">
@@ -134,9 +141,9 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
               href={`/blog/${previousArticle.slug}`}
               className="p-4 border border-[var(--brand-border)] rounded-lg hover:bg-[var(--brand-bg)] transition-colors"
             >
-              <p className="text-sm text-gray-500 mb-2">← Artículo Anterior</p>
+              <p className="text-sm text-gray-500 mb-2">{lang === 'en' ? '← Previous Article' : '← Artículo Anterior'}</p>
               <p className="font-semibold text-[var(--brand-text)] line-clamp-2">
-                {previousArticle.title}
+                {lang === 'en' ? previousArticle.title_en || previousArticle.title : previousArticle.title}
               </p>
             </Link>
           ) : (
@@ -147,9 +154,9 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
               href={`/blog/${nextArticle.slug}`}
               className="p-4 border border-[var(--brand-border)] rounded-lg hover:bg-[var(--brand-bg)] transition-colors text-right"
             >
-              <p className="text-sm text-gray-500 mb-2">Siguiente Artículo →</p>
+              <p className="text-sm text-gray-500 mb-2">{lang === 'en' ? 'Next Article →' : 'Siguiente Artículo →'}</p>
               <p className="font-semibold text-[var(--brand-text)] line-clamp-2">
-                {nextArticle.title}
+                {lang === 'en' ? nextArticle.title_en || nextArticle.title : nextArticle.title}
               </p>
             </Link>
           ) : (
@@ -163,7 +170,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             href="/blog"
             className="text-[var(--brand-accent)] font-semibold hover:underline"
           >
-            ← Volver al Blog
+            {lang === 'en' ? '← Back to Blog' : '← Volver al Blog'}
           </Link>
         </div>
       </article>
@@ -172,16 +179,16 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
       <section className="bg-[var(--brand-accent)] bg-opacity-5 border-t border-[var(--brand-border)] py-16 mt-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-[var(--brand-text)] mb-4">
-            ¿Necesitas Ayuda con tu Proyecto?
+            {lang === 'en' ? 'Need Help With Your Project?' : '¿Necesitas Ayuda con tu Proyecto?'}
           </h2>
           <p className="text-gray-600 mb-8">
-            Contacta a nuestro equipo de expertos para una cotización personalizada.
+            {lang === 'en' ? 'Reach out to our expert team for a personalized quote.' : 'Contacta a nuestro equipo de expertos para una cotización personalizada.'}
           </p>
           <Link
             href="/#contact"
             className="inline-block px-8 py-3 bg-[var(--brand-accent)] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
-            Contactar Ahora
+            {lang === 'en' ? 'Contact Now' : 'Contactar Ahora'}
           </Link>
         </div>
       </section>
