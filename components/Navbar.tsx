@@ -41,6 +41,12 @@ export default function Navbar() {
           >
             Proyectos
           </a>
+          <Link
+            href="/blog"
+            className="text-brand-text-light hover:text-brand-accent transition-colors link-hover"
+          >
+            Blog
+          </Link>
           <a
             href="#contact"
             className="text-brand-text-light hover:text-brand-accent transition-colors link-hover"
