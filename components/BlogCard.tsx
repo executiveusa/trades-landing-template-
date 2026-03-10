@@ -37,11 +37,11 @@ export function BlogCard({ article }: { article: BlogArticle }) {
           </span>
           <span className="text-xs text-gray-500">{formatDate(article.date)}</span>
         </div>
-        <h3 className="text-lg font-bold text-[var(--brand-text)] mb-2 group-hover:text-[var(--brand-accent)] transition-colors">
-          <Link href={`/blog/${article.slug}`}>
+        <Link href={`/blog/${article.slug}`} className="block">
+          <h3 className="text-lg font-bold text-[var(--brand-text)] mb-2 group-hover:text-[var(--brand-accent)] transition-colors">
             {lang === 'en' ? article.title_en || article.title : article.title}
-          </Link>
-        </h3>
+          </h3>
+        </Link>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {lang === 'en' ? article.excerpt_en || article.excerpt : article.excerpt}
         </p>

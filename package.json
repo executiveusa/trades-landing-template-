@@ -13,7 +13,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.0",
     "firecrawl": "^4.15.2",
-    "framer-motion": "^11.0.0",
+    "framer-motion": "^11.18.2",
     "motion": "^11.0.0",
     "next": "^15.0.0",
     "postcss": "^8.4.0",
