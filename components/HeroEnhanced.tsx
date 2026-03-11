@@ -34,8 +34,8 @@ export default function Hero() {
         {/* Image container - optimized for different screen sizes */}
         <div className="relative w-full h-full hidden md:block">
           <Image
-            src="/placeholder-project.jpg"
-            alt="Premium plaster finishing work"
+            src="/cuba-hero.heic"
+            alt="Premium plaster finishing work - Cuba destination"
             fill
             className="object-cover"
             priority
