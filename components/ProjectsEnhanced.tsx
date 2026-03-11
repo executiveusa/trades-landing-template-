@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { getTenant } from '@/lib/tenant'
 import { useLang } from '@/lib/lang'
 import { motion } from 'framer-motion'
@@ -22,7 +22,7 @@ function BeforeAfterSlider() {
     setIsMobile(window.innerWidth < 768)
   }, [])
 
-  const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
+  const handleMove = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     if (!containerRef.current) return
 
     const rect = containerRef.current.getBoundingClientRect()
@@ -36,10 +36,10 @@ function BeforeAfterSlider() {
 
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
     setSliderPosition(percentage)
-  }
+  }, [])
 
   const handleMouseDown = () => setIsDragging(true)
-  const handleMouseUp = () => setIsDragging(false)
+  const handleMouseUp = useCallback(() => setIsDragging(false), [])
 
   useEffect(() => {
     if (isDragging) {
@@ -55,7 +55,7 @@ function BeforeAfterSlider() {
       }
     }
     return undefined
-  }, [isDragging])
+  }, [isDragging, handleMove, handleMouseUp])
 
   return (
     <SlideUpView>

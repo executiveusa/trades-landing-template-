@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { formatDate } from '@/lib/date-utils'
 import { BlogArticle } from '@/components/BlogCard'
@@ -62,10 +63,13 @@ export default async function BlogArticlePage(props: any) {
     <main className="min-h-screen bg-white">
       {/* Hero Image */}
       <div className="w-full h-96 overflow-hidden bg-gray-200">
-        <img
+        <Image
           src={article.image}
           alt={article.title}
+          width={1200}
+          height={384}
           className="w-full h-full object-cover"
+          priority
         />
       </div>
 

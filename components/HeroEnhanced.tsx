@@ -32,12 +32,13 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/80 via-brand-bg/60 to-white/40 z-10" />
         
         {/* Image container - optimized for different screen sizes */}
-        <div className="relative w-full h-full hidden md:block">
+        <div className="hidden md:block absolute inset-0 w-full h-full">
           <Image
             src="/cuba-hero.jpg"
             alt="Premium plaster finishing work - Cuba destination"
             fill
-            className="object-cover"
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
             priority
             quality={85}
           />

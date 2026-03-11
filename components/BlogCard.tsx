@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { formatDate } from '@/lib/date-utils'
 import { useLang } from '@/lib/lang'
 
@@ -24,9 +25,11 @@ export function BlogCard({ article }: { article: BlogArticle }) {
   return (
     <article className="group overflow-hidden rounded-lg border border-[var(--brand-border)] bg-white hover:shadow-lg transition-shadow duration-300">
       <div className="aspect-video overflow-hidden bg-gray-200">
-        <img 
+        <Image 
           src={article.image} 
           alt={article.title}
+          width={400}
+          height={225}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </div>

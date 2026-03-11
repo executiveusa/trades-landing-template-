@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { getTenant } from '@/lib/tenant'
 import './globals.css'
 import ClientLangProvider from '@/components/ClientLangProvider'
@@ -31,12 +32,14 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        {/* Google Analytics */}
-        <script
-          async
+        {/* Google Analytics using Next.js Script component */}
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-        ></script>
-        <script
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -48,7 +51,7 @@ export default function RootLayout({
               });
             `,
           }}
-        ></script>
+        />
         <style>{`
           :root {
             --brand-bg: ${tenant.theme.background};
