@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { getTenant } from '@/lib/tenant'
-import { buildWhatsAppLink } from '@/lib/whatsapp'
+import { buildWhatsAppLink, isWhatsAppConfigured } from '@/lib/whatsapp'
 import { useLang } from '@/lib/lang'
 
 type FormData = {
@@ -15,6 +15,7 @@ type FormData = {
 export default function Contact() {
   const tenant = getTenant()
   const { lang } = useLang()
+  const whatsappReady = isWhatsAppConfigured(tenant.whatsappNumber)
   const [formData, setFormData] = useState<FormData>({
     nombre: '',
     telefono: '',
@@ -31,6 +32,7 @@ export default function Contact() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
+    if (!whatsappReady) return
 
     const message = lang === 'en'
       ? [
@@ -56,8 +58,6 @@ export default function Contact() {
     }
 
     const whatsappLink = buildWhatsAppLink(tenant.whatsappNumber, message, formData.zona)
-
-    if (whatsappLink === '#contact') return
     window.open(whatsappLink, '_blank', 'noopener,noreferrer')
   }
 
@@ -77,6 +77,14 @@ export default function Contact() {
                 ? 'Send the location and a short description. The request opens directly in WhatsApp so you can also attach photos of the wall or surface.'
                 : 'Envía la zona y una descripción breve. La solicitud se abre directamente en WhatsApp para que también puedas adjuntar fotos de la pared o superficie.'}
             </p>
+
+            {!whatsappReady ? (
+              <div className="mt-6 rounded-xl border border-amber-300/30 bg-amber-200/10 p-4 text-sm leading-relaxed text-amber-100">
+                {lang === 'en'
+                  ? 'Preview safety: Ray’s real WhatsApp number has not been verified yet, so lead sending is intentionally disabled.'
+                  : 'Seguridad de vista previa: el WhatsApp real de Ray todavía no está verificado, por lo que el envío de prospectos está desactivado intencionalmente.'}
+              </div>
+            ) : null}
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-white/10 bg-white/[0.04] p-5 md:p-8">
@@ -152,9 +160,12 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-neutral-950 transition hover:bg-white/90"
+              disabled={!whatsappReady}
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-neutral-950 transition enabled:hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              {lang === 'en' ? 'Continue on WhatsApp' : 'Continuar en WhatsApp'}
+              {whatsappReady
+                ? lang === 'en' ? 'Continue on WhatsApp' : 'Continuar en WhatsApp'
+                : lang === 'en' ? 'WhatsApp pending verification' : 'WhatsApp pendiente de verificación'}
             </button>
 
             <p className="text-center text-xs leading-relaxed text-white/45">
