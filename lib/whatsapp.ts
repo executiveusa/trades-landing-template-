@@ -3,14 +3,15 @@ export function buildWhatsAppLink(
   message: string = 'Hola, vi tu página y necesito una cotización.',
   zone: string = 'Puerto Vallarta'
 ): string {
-  const cleanPhone = phoneNumber.replace(/\D/g, '')
-  const countryCode = '52'
+  const digits = phoneNumber.replace(/\D/g, '')
+  if (!digits) return '#contact'
+
+  const normalizedPhone = digits.startsWith('52') ? digits : `52${digits}`
   const formattedMessage = message
     .replace('{zona}', zone)
     .replace('{servicio}', 'proyecto personalizado')
 
-  const encoded = encodeURIComponent(formattedMessage)
-  return `https://wa.me/${countryCode}${cleanPhone}?text=${encoded}`
+  return `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(formattedMessage)}`
 }
 
 export function getDefaultWhatsAppMessage(zone: string = 'Puerto Vallarta'): string {
