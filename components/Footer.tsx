@@ -1,88 +1,37 @@
 'use client'
 
-import { getTenant } from '@/lib/tenant'
 import { useLang } from '@/lib/lang'
 
 export default function Footer() {
-  const tenant = getTenant()
   const { lang } = useLang()
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-brand-text text-white py-12">
+    <footer className="border-t border-white/10 bg-neutral-950 py-10 text-white">
       <div className="container-safe">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Brand */}
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <h4 className="font-bold text-lg mb-2">{tenant.businessName}</h4>
-            <p className="text-gray-300 text-sm">{tenant.tradeName}</p>
-            <p className="text-gray-400 text-xs mt-2">Ubicación: {tenant.city}, Jalisco</p>
-          </div>
-
-          {/* Links */}
-          <div>
-            <h4 className="font-semibold mb-4">
-              {lang === 'en' ? 'Quick Links' : 'Quick Links'}
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors">
-                  {lang === 'en' ? 'Services' : 'Servicios'}
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-gray-300 hover:text-white transition-colors">
-                  {lang === 'en' ? 'Projects' : 'Proyectos'}
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-gray-300 hover:text-white transition-colors">
-                  {lang === 'en' ? 'Contact' : 'Contacto'}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-semibold mb-4">
-            {lang === 'en' ? 'Contact' : 'Contacto'}
-          </h4>
-            <p className="text-gray-300 text-sm mb-2">
-              <a href={`tel:${tenant.phone}`} className="hover:text-white transition-colors">
-                {tenant.phone}
-              </a>
-            </p>
-            {tenant.facebookUrl && (
-              <p className="text-gray-300 text-sm mb-2">
-                <a href={tenant.facebookUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  Facebook
-                </a>
-              </p>
-            )}
-            <p className="text-gray-400 text-xs">
-              {lang === 'en'
-                ? 'Replies within 24 hours • No‑obligation quotes'
-                : 'Respuestas en 24 horas • Cotizaciones sin compromiso'}
+            <p className="text-lg font-semibold tracking-[-0.02em]">Ray</p>
+            <p className="mt-2 text-sm text-white/55">
+              {lang === 'en' ? 'Master plasterer · Puerto Vallarta, Jalisco' : 'Maestro yesero · Puerto Vallarta, Jalisco'}
             </p>
           </div>
+
+          <nav className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/60" aria-label={lang === 'en' ? 'Footer navigation' : 'Navegación del pie'}>
+            <a href="#services" className="transition hover:text-white">
+              {lang === 'en' ? 'Services' : 'Servicios'}
+            </a>
+            <a href="#projects" className="transition hover:text-white">
+              {lang === 'en' ? 'Work' : 'Trabajos'}
+            </a>
+            <a href="#contact" className="transition hover:text-white">
+              {lang === 'en' ? 'Quote' : 'Cotización'}
+            </a>
+          </nav>
         </div>
 
-        <div className="border-t border-gray-700 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-            <p>
-              © {currentYear} {tenant.businessName}.{' '}
-              {lang === 'en' ? 'All rights reserved.' : 'Todos los derechos reservados.'}
-            </p>
-            <div className="flex gap-4 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white transition-colors">
-                {lang === 'en' ? 'Privacy' : 'Privacidad'}
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                {lang === 'en' ? 'Terms' : 'Términos'}
-              </a>
-            </div>
-          </div>
+        <div className="mt-8 border-t border-white/10 pt-6 text-xs text-white/35">
+          © {currentYear} Ray · Puerto Vallarta
         </div>
       </div>
     </footer>
