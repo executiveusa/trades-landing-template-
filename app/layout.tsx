@@ -1,57 +1,68 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { getTenant } from '@/lib/tenant'
-import './globals.css'
 import ClientLangProvider from '@/components/ClientLangProvider'
+import './globals.css'
 
 const tenant = getTenant()
-
-export const dynamic = 'force-dynamic';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
-  title: `${tenant.businessName} | ${tenant.tradeName}`,
-  description: tenant.hero.subhead,
-  keywords: 'yeso, acabados, Puerto Vallarta, repellado, construcción',
-  authors: [{ name: tenant.businessName }],
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  title: 'Ray | Maestro Yesero en Puerto Vallarta',
+  description: 'Yeso, reparación de superficies y acabados hechos a mano para casas y negocios en Puerto Vallarta.',
+  keywords: ['yesero Puerto Vallarta', 'yeso Puerto Vallarta', 'acabados Puerto Vallarta', 'reparación de muros Puerto Vallarta'],
+  authors: [{ name: 'Ray' }],
   openGraph: {
     type: 'website',
     locale: 'es_MX',
-    url: 'https://example.com',
-    title: tenant.businessName,
-    description: tenant.hero.subhead,
-    siteName: tenant.businessName,
+    title: 'Ray | Maestro Yesero en Puerto Vallarta',
+    description: 'Yeso, reparación de superficies y acabados hechos a mano en Puerto Vallarta.',
+    siteName: 'Ray — Maestro Yesero',
+    ...(siteUrl ? { url: siteUrl } : {}),
   },
-  robots: 'index, follow',
+  robots: { index: true, follow: true },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const localBusiness = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Ray — Maestro Yesero',
+    description: 'Servicios de yeso, reparación de superficies y acabados en Puerto Vallarta.',
+    areaServed: tenant.serviceAreas,
+    ...(tenant.phone ? { telephone: tenant.phone } : {}),
+    ...(siteUrl ? { url: siteUrl } : {}),
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: tenant.city,
+      addressRegion: 'Jalisco',
+      addressCountry: 'MX',
+    },
+  }
+
   return (
     <html lang="es">
       <head>
-        {/* Google Analytics using Next.js Script component */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX', {
-                'page_path': window.location.pathname,
-                'page_title': document.title
-              });
-            `,
-          }}
-        />
+        {gaId ? (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}');
+                `,
+              }}
+            />
+          </>
+        ) : null}
+
         <style>{`
           :root {
             --brand-bg: ${tenant.theme.background};
@@ -64,31 +75,14 @@ export default function RootLayout({
             --radius-lg: 0.75rem;
           }
         `}</style>
+
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
-              name: tenant.businessName,
-              description: tenant.tradeName,
-              areaServed: tenant.serviceAreas,
-              telephone: tenant.phone,
-              url: 'https://example.com',
-              address: {
-                '@type': 'PostalAddress',
-                addressLocality: tenant.city,
-                addressRegion: 'Jalisco',
-                addressCountry: 'MX',
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
         />
       </head>
       <body className="bg-brand-bg text-brand-text antialiased">
-        <ClientLangProvider>
-          {children}
-        </ClientLangProvider>
+        <ClientLangProvider>{children}</ClientLangProvider>
       </body>
     </html>
   )
