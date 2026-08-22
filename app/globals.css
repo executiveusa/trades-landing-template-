@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme Variables (set in layout.tsx) */
 :root {
-  --brand-bg: #faf9f7;
-  --brand-text: #1a1a1a;
-  --brand-text-light: #666666;
-  --brand-accent: #0ea5e9;
-  --brand-border: #e5e5e5;
+  --brand-bg: #f2eee6;
+  --brand-text: #181714;
+  --brand-text-light: #6f6a62;
+  --brand-accent: #8a6742;
+  --brand-border: #d8d0c5;
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
@@ -19,84 +18,50 @@
     @apply border-brand-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    background: var(--brand-bg);
+  }
+
   body {
-    @apply bg-brand-bg text-brand-text;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    @apply bg-brand-bg text-brand-text antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   }
 
-  h1 {
-    @apply text-4xl md:text-5xl font-bold leading-tight;
-  }
-
-  h2 {
-    @apply text-3xl md:text-4xl font-bold leading-tight;
-  }
-
-  h3 {
-    @apply text-xl md:text-2xl font-semibold leading-snug;
-  }
-
+  h1,
+  h2,
+  h3,
   h4 {
-    @apply text-lg font-semibold;
+    text-wrap: balance;
   }
 
   p {
-    @apply leading-relaxed;
+    text-wrap: pretty;
   }
 }
 
 @layer components {
   .container-safe {
-    @apply w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-brand-accent text-white font-semibold rounded-md hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-full bg-brand-text px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-brand-accent text-brand-accent font-semibold rounded-md hover:bg-brand-accent hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-full border border-brand-text px-6 py-3 font-semibold text-brand-text transition-colors hover:bg-brand-text hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2;
   }
 
   .btn-sm {
     @apply px-4 py-2 text-sm;
   }
 
-  .card {
-    @apply bg-white border border-brand-border rounded-lg p-6 hover:shadow-sm transition-shadow;
-  }
-
   .section-spacing {
-    @apply py-16 md:py-24;
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, var(--brand-text) 0%, var(--brand-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .link-hover {
-    @apply relative inline-block;
-  }
-
-  .link-hover::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300;
-  }
-
-  .link-hover:hover::after {
-    @apply w-full;
+    @apply py-16 md:py-24 lg:py-28;
   }
 }
 
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Reduce motion respect */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -108,12 +73,10 @@ html {
   }
 }
 
-/* Focus visible for accessibility */
 :focus-visible {
   @apply outline-2 outline-offset-2 outline-brand-accent;
 }
 
-/* Selection color */
 ::selection {
-  @apply bg-brand-accent text-white;
+  @apply bg-brand-text text-white;
 }
