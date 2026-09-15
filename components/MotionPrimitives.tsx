@@ -1,14 +1,8 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
 
-/**
- * Steve Krug Principle: Don't Make Me Think
- * Smooth, intuitive animations that guide the eye and provide feedback
- */
-
-// Fade-in animation for content entrance
 export function FadeInView({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   return (
     <motion.div
@@ -22,7 +16,6 @@ export function FadeInView({ children, delay = 0 }: { children: ReactNode; delay
   )
 }
 
-// Slide-up animation for content entrance
 export function SlideUpView({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   return (
     <motion.div
@@ -36,28 +29,19 @@ export function SlideUpView({ children, delay = 0 }: { children: ReactNode; dela
   )
 }
 
-// Scale animation for hover effects
 export function ScaleOnHover({ children, scale = 1.02 }: { children: ReactNode; scale?: number }) {
   return (
-    <motion.div
-      whileHover={{ scale }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-    >
+    <motion.div whileHover={{ scale }} transition={{ duration: 0.3, ease: 'easeOut' }}>
       {children}
     </motion.div>
   )
 }
 
-// Parallax scroll effect
 export function ParallaxView({ children, offset = 20 }: { children: ReactNode; offset?: number }) {
   return (
     <motion.div
-      style={{
-        y: 0,
-      }}
-      whileInView={{
-        y: offset,
-      }}
+      style={{ y: 0 }}
+      whileInView={{ y: offset }}
       transition={{ duration: 0.6 }}
       viewport={{ once: false }}
     >
@@ -66,14 +50,7 @@ export function ParallaxView({ children, offset = 20 }: { children: ReactNode; o
   )
 }
 
-// Stagger children animations
-export function StaggerContainer({
-  children,
-  delay = 0,
-}: {
-  children: ReactNode
-  delay?: number
-}) {
+export function StaggerContainer({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   return (
     <motion.div
       initial="hidden"
@@ -83,10 +60,7 @@ export function StaggerContainer({
         hidden: { opacity: 0 },
         visible: {
           opacity: 1,
-          transition: {
-            staggerChildren: 0.1,
-            delayChildren: delay,
-          },
+          transition: { staggerChildren: 0.1, delayChildren: delay },
         },
       }}
     >
@@ -108,16 +82,10 @@ export function StaggerItem({ children }: { children: ReactNode }) {
   )
 }
 
-// Smooth number counter animation
-export function CounterAnimation({ value, duration = 2 }: { value: number; duration?: number }) {
-  return (
-    <motion.span>
-      {value}
-    </motion.span>
-  )
+export function CounterAnimation({ value }: { value: number; duration?: number }) {
+  return <motion.span>{value}</motion.span>
 }
 
-// Image reveal animation for before/after style galleries
 export function ImageReveal({
   children,
   direction = 'left',
@@ -144,7 +112,6 @@ export function ImageReveal({
   )
 }
 
-// Smooth scroll-triggered text animation
 export function TextReveal({ text, delay = 0 }: { text: string; delay?: number }) {
   const words = text.split(' ')
 
@@ -157,7 +124,7 @@ export function TextReveal({ text, delay = 0 }: { text: string; delay?: number }
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: delay + index * 0.05 }}
           viewport={{ once: true }}
-          className="inline-block mr-1"
+          className="mr-1 inline-block"
         >
           {word}
         </motion.span>
@@ -166,7 +133,6 @@ export function TextReveal({ text, delay = 0 }: { text: string; delay?: number }
   )
 }
 
-// Animated button feedback
 export function AnimatedButton({ children, onClick }: { children: ReactNode; onClick?: () => void }) {
   return (
     <motion.button
