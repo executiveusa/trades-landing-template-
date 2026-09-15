@@ -3,14 +3,9 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "nodeVersion": "18.x",
-  "env": [
-    {
-      "key": "NEXT_PUBLIC_GA_ID",
-      "value": "G-XXXXXXXXXX",
-      "type": "secret"
-    }
-  ],
+  "env": {
+    "NEXT_PUBLIC_GA_ID": "G-XXXXXXXXXX"
+  },
   "redirects": [
     {
       "source": "/blog",
