@@ -14,14 +14,13 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-neutral-950 text-white">
       <Image
-        src="/ray-hero.jpg"
+        src="/cuba-hero.jpg"
         alt={lang === 'en' ? 'Plaster and finishing work in Puerto Vallarta' : 'Trabajo de yeso y acabados en Puerto Vallarta'}
         fill
         sizes="100vw"
         className="object-cover object-[58%_center] sm:object-center"
         priority
-        quality={82}
-        unoptimized
+        quality={88}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/80" />
 
