@@ -1,44 +1,36 @@
 'use client'
 
-import { getTenant } from '@/lib/tenant'
 import { useLang } from '@/lib/lang'
 
 export default function ServiceArea() {
-  const tenant = getTenant()
   const { lang } = useLang()
 
   return (
-    <section className="section-spacing bg-brand-bg">
+    <section id="area" className="section-spacing border-y border-brand-border bg-white">
       <div className="container-safe">
-        <div className="text-center mb-12">
-          <h2 className="text-brand-text">
-            {lang === 'en' ? tenant.serviceAreaTitle_en || tenant.serviceAreaTitle : tenant.serviceAreaTitle}
-          </h2>
-          <p className="text-lg text-brand-text-light mt-4">
-            {lang === 'en'
-              ? 'We serve the entire Costa de Banderas.'
-              : 'Atendemos en toda la Costa de Banderas.'}
-          </p>
-        </div>
+        <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end lg:gap-20">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-text-light">
+              {lang === 'en' ? 'Service area' : 'Zona de trabajo'}
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-brand-text md:text-5xl">
+              Puerto Vallarta
+            </h2>
+          </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {tenant.serviceAreas.map((area, idx) => (
-            <div
-              key={idx}
-              className="px-4 py-3 bg-white border border-brand-border rounded-md text-center hover:border-brand-accent transition-colors"
+          <div className="max-w-2xl">
+            <p className="text-lg leading-relaxed text-brand-text-light md:text-xl">
+              {lang === 'en'
+                ? 'For work in Puerto Vallarta, send the location and a photo of the wall or surface. Ray can confirm whether the job is a fit before you spend time arranging a visit.'
+                : 'Para trabajos en Puerto Vallarta, envía la ubicación y una foto del muro o superficie. Ray puede confirmar primero si el trabajo encaja antes de que pierdas tiempo coordinando una visita.'}
+            </p>
+            <a
+              href="#contact"
+              className="mt-6 inline-flex min-h-11 items-center font-semibold text-brand-text underline decoration-brand-accent/50 underline-offset-4 transition hover:decoration-brand-accent"
             >
-              <p className="text-brand-text font-medium text-sm">{area}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-10">
-          <p className="text-brand-text-light">
-            {lang === 'en' ? "Is your area not listed?" : "¿Tu zona no está listada?"}{' '}
-            <a href="#contact" className="font-semibold text-brand-accent hover:underline">
-              {lang === 'en' ? 'Check with us' : 'Consulta con nosotros'}
+              {lang === 'en' ? 'Describe the job' : 'Describe el trabajo'}
             </a>
-          </p>
+          </div>
         </div>
       </div>
     </section>
