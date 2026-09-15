@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { usePathname, useSearchParams, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 export type Lang = 'es' | 'en'
 
@@ -14,37 +14,34 @@ const LangContext = createContext<LangContextValue | undefined>(undefined)
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const pathname = usePathname()
-
   const [lang, setLang] = useState<Lang>('es')
 
   useEffect(() => {
-    const param = searchParams.get('lang') as Lang | null
+    if (typeof window === 'undefined') return
+
+    const params = new URLSearchParams(window.location.search)
+    const param = params.get('lang') as Lang | null
+
     if (param === 'en' || param === 'es') {
       setLang(param)
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('lang', param)
-      }
-    } else {
-      const stored = localStorage.getItem('lang') as Lang | null
-      if (stored === 'en' || stored === 'es') {
-        setLang(stored)
-      }
+      localStorage.setItem('lang', param)
+      return
     }
-  }, [searchParams])
+
+    const stored = localStorage.getItem('lang') as Lang | null
+    if (stored === 'en' || stored === 'es') setLang(stored)
+  }, [])
 
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      document.documentElement.lang = lang === 'en' ? 'en' : 'es'
-    }
+    document.documentElement.lang = lang
   }, [lang])
 
   const toggle = () => {
     const next: Lang = lang === 'es' ? 'en' : 'es'
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '')
     params.set('lang', next)
-    router.replace(`${pathname}?${params.toString()}`)
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
     setLang(next)
     localStorage.setItem('lang', next)
   }
