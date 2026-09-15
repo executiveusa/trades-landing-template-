@@ -6,8 +6,8 @@ const services = [
   {
     es: 'Yeso y aplanados',
     en: 'Plaster and smoothing',
-    esDescription: 'Preparación y acabado de muros interiores y exteriores con atención al plano, textura y detalle.',
-    enDescription: 'Interior and exterior wall preparation and finishing with close attention to plane, texture and detail.',
+    esDescription: 'Preparación, nivelación y acabado de muros interiores y exteriores.',
+    enDescription: 'Preparation, leveling and finishing for interior and exterior walls.',
   },
   {
     es: 'Reparación de superficies',
@@ -18,20 +18,14 @@ const services = [
   {
     es: 'Acabados decorativos',
     en: 'Decorative finishes',
-    esDescription: 'Texturas y acabados hechos a mano para muros que requieren un resultado más especial.',
-    enDescription: 'Hand-worked textures and finishes for walls that call for a more distinctive result.',
+    esDescription: 'Texturas y detalles hechos a mano para muros que requieren un acabado especial.',
+    enDescription: 'Hand-worked textures and details for walls that call for a distinctive finish.',
   },
   {
     es: 'Interiores y exteriores',
     en: 'Interior and exterior work',
-    esDescription: 'Trabajo para casas, condominios, comercios y espacios en proceso de renovación.',
+    esDescription: 'Trabajo para casas, condominios, comercios y espacios en renovación.',
     enDescription: 'Work for homes, condominiums, businesses and spaces undergoing renovation.',
-  },
-  {
-    es: 'Trabajo a la medida',
-    en: 'Custom work',
-    esDescription: 'Cada superficie se revisa antes de recomendar el proceso y acabado apropiados.',
-    enDescription: 'Each surface is reviewed before recommending the appropriate process and finish.',
   },
 ]
 
@@ -47,12 +41,12 @@ export default function Services() {
               {lang === 'en' ? 'Services' : 'Servicios'}
             </p>
             <h2 className="mt-4 max-w-md text-3xl font-semibold tracking-[-0.025em] text-brand-text md:text-5xl">
-              {lang === 'en' ? 'Good plaster work starts with the surface.' : 'Un buen acabado empieza con la superficie.'}
+              {lang === 'en' ? 'Start with the surface. Finish with the detail.' : 'Primero la superficie. Después, el detalle.'}
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-brand-text-light">
               {lang === 'en'
-                ? 'The site is intentionally focused on the work Ray actually wants to sell—not a catalog of generic contractor services.'
-                : 'El sitio está enfocado en el trabajo que Ray realmente quiere vender, no en un catálogo genérico de servicios de contratista.'}
+                ? 'Ray reviews the condition of the wall first, then recommends the repair, preparation and finish the job actually needs.'
+                : 'Ray revisa primero el estado del muro y después recomienda la reparación, preparación y acabado que realmente necesita el trabajo.'}
             </p>
           </div>
 
