@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { getTenant } from '@/lib/tenant'
 import { buildWhatsAppLink } from '@/lib/whatsapp'
 import { useLang } from '@/lib/lang'
@@ -13,15 +12,19 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-neutral-950 text-white">
-      <Image
-        src="/cuba-hero.jpg"
-        alt={lang === 'en' ? 'Plaster and finishing work in Puerto Vallarta' : 'Trabajo de yeso y acabados en Puerto Vallarta'}
-        fill
-        sizes="100vw"
-        className="object-cover object-[58%_center] sm:object-center"
-        priority
-        quality={88}
-      />
+      <picture>
+        <source media="(min-width: 768px)" srcSet="/ray-hero-desktop.jpg" />
+        <img
+          src="/ray-hero-mobile.jpg"
+          alt={lang === 'en' ? 'Plaster and finishing work in Puerto Vallarta' : 'Trabajo de yeso y acabados en Puerto Vallarta'}
+          className="absolute inset-0 h-full w-full object-cover object-[58%_center] sm:object-center"
+          width="640"
+          height="853"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
+        />
+      </picture>
       <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/80" />
 
       <div className="container-safe relative z-10 flex min-h-[100svh] items-end pb-10 pt-28 sm:pb-14 md:pb-20 lg:pb-24">
