@@ -1,26 +1,24 @@
 {
   "name": "pv-plaster-landing",
   "version": "1.0.0",
-  "description": "Ray Puerto Vallarta plastering lead-generation site",
+  "description": "Premium landing template for trades workers in Puerto Vallarta",
   "type": "module",
   "private": true,
-  "engines": {
-    "node": ">=22.0.0"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --test tests/*.test.mjs"
+    "deploy:agent": "tsx tools/vercel-agent/agent.ts",
+    "deploy:check": "tsx tools/vercel-agent/check-deployment.ts"
   },
   "dependencies": {
     "autoprefixer": "^10.4.0",
     "firecrawl": "^4.15.2",
     "framer-motion": "^11.18.2",
     "motion": "^11.0.0",
-    "next": "^15.0.0",
-    "postcss": "^8.4.0",
+    "next": "^16.3.5",
+    "postcss": "^8.5.23",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^3.4.0"
@@ -31,6 +29,8 @@
     "@types/react-dom": "^19.0.0",
     "eslint": "^8.0.0",
     "eslint-config-next": "^15.0.0",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "tsx": "^4.23.13",
+    "dotenv": "^16.4.5"
   }
 }
