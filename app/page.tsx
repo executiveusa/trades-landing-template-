@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/HeroEnhanced'
 import Services from '@/components/ServicesEnhanced'
+import Projects from '@/components/ProjectsEnhanced'
 import ServiceArea from '@/components/ServiceArea'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
@@ -24,6 +25,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Services />
+      <Projects />
       <ServiceArea />
       <Contact />
       <Footer />

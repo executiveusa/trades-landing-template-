@@ -31,13 +31,13 @@ export default function Hero() {
           </p>
 
           <h1 className="max-w-3xl text-[2.55rem] font-semibold leading-[0.98] tracking-[-0.035em] text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            {lang === 'en' ? 'Walls finished right for Vallarta.' : 'Muros bien hechos para el clima de Vallarta.'}
+            {lang === 'en' ? 'Plaster and finishes in Puerto Vallarta' : 'Yeso y acabados en Puerto Vallarta'}
           </h1>
 
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 md:mt-6 md:text-xl">
             {lang === 'en'
-              ? 'Ray handles plaster, surface repair and finishing work for homes and businesses in Puerto Vallarta.'
-              : 'Ray realiza trabajos de yeso, reparación de superficies y acabados para casas y negocios en Puerto Vallarta.'}
+              ? 'Plaster, surface repair and clean finishes for homes and businesses in Puerto Vallarta.'
+              : 'Yeso, reparación de superficies y acabados limpios para casas y negocios en Puerto Vallarta.'}
           </p>
 
           <div className="mt-7 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:items-center">
