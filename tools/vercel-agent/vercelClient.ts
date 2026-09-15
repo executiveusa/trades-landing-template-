@@ -1,9 +1,34 @@
 import 'dotenv/config';
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
-const VERCEL_PROJECT_ID = process.env.VERCEL_PROJECT_ID;
-const VERCEL_PROJECT_NAME = process.env.VERCEL_PROJECT_NAME;
+const RAW_VERCEL_PROJECT_ID = process.env.VERCEL_PROJECT_ID?.trim();
+const VERCEL_PROJECT_NAME = process.env.VERCEL_PROJECT_NAME?.trim();
 const VERCEL_API = 'https://api.vercel.com';
+
+const VALID_PROJECT_ID = /^prj_[A-Za-z0-9]+$/;
+const PLACEHOLDER_VALUES = new Set([
+  'your_project_id_here',
+  '<paste_your_project_id_here>',
+  'project_id_here',
+]);
+
+function getProjectSelector(): string {
+  if (
+    RAW_VERCEL_PROJECT_ID &&
+    !PLACEHOLDER_VALUES.has(RAW_VERCEL_PROJECT_ID) &&
+    VALID_PROJECT_ID.test(RAW_VERCEL_PROJECT_ID)
+  ) {
+    return RAW_VERCEL_PROJECT_ID;
+  }
+
+  if (VERCEL_PROJECT_NAME) {
+    return VERCEL_PROJECT_NAME;
+  }
+
+  throw new Error(
+    'No valid Vercel project selector is configured. Set VERCEL_PROJECT_NAME, or set VERCEL_PROJECT_ID to a real value beginning with "prj_".'
+  );
+}
 
 interface DeploymentResponse {
   id: string;
@@ -35,14 +60,15 @@ async function vercelFetch(endpoint: string, options: RequestInit = {}) {
 }
 
 export async function triggerDeploy(): Promise<DeploymentResponse> {
-  console.log(`   Triggering deployment for project: ${VERCEL_PROJECT_NAME}`);
-  
+  const project = getProjectSelector();
+  console.log(`   Triggering deployment for project: ${project}`);
+
   try {
     return await vercelFetch('/v13/deployments', {
       method: 'POST',
       body: JSON.stringify({
-        name: VERCEL_PROJECT_NAME,
-        project: VERCEL_PROJECT_ID,
+        name: VERCEL_PROJECT_NAME || project,
+        project,
         target: 'production',
       }),
     });
@@ -57,7 +83,8 @@ export async function getDeploymentStatus(deploymentId: string): Promise<Deploym
 
 export async function listDeployments(limit: number = 5): Promise<DeploymentResponse[]> {
   try {
-    const data = await vercelFetch(`/v9/projects/${VERCEL_PROJECT_ID}/deployments?limit=${limit}`);
+    const project = encodeURIComponent(getProjectSelector());
+    const data = await vercelFetch(`/v9/projects/${project}/deployments?limit=${limit}`);
     return data.deployments || [];
   } catch (error: any) {
     throw new Error(`Failed to list deployments: ${error.message}`);
