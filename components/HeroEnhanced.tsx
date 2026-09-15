@@ -50,10 +50,10 @@ export default function Hero() {
               {lang === 'en' ? 'Quote on WhatsApp' : 'Cotizar por WhatsApp'}
             </a>
             <a
-              href="#projects"
+              href="#services"
               className="inline-flex min-h-12 items-center justify-center px-4 py-3 text-sm font-semibold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
             >
-              {lang === 'en' ? 'See the work' : 'Ver trabajos'}
+              {lang === 'en' ? 'See services' : 'Ver servicios'}
             </a>
           </div>
         </div>
