@@ -37,8 +37,8 @@ export default function Navbar() {
           <a href="#services" className={`text-sm transition ${mutedClass}`}>
             {lang === 'en' ? 'Services' : 'Servicios'}
           </a>
-          <a href="#projects" className={`text-sm transition ${mutedClass}`}>
-            {lang === 'en' ? 'Work' : 'Trabajos'}
+          <a href="#area" className={`text-sm transition ${mutedClass}`}>
+            {lang === 'en' ? 'Area' : 'Zona'}
           </a>
           <a href="#contact" className={`text-sm transition ${mutedClass}`}>
             {lang === 'en' ? 'Quote' : 'Cotización'}
