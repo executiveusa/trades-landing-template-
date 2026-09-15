@@ -10,16 +10,16 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
-  title: 'Ray | Maestro Yesero en Puerto Vallarta',
-  description: 'Yeso, reparación de superficies y acabados hechos a mano para casas y negocios en Puerto Vallarta.',
+  title: 'Ray | Yeso & Acabados en Puerto Vallarta',
+  description: 'Yeso, reparación de superficies y acabados para casas y negocios en Puerto Vallarta.',
   keywords: ['yesero Puerto Vallarta', 'yeso Puerto Vallarta', 'acabados Puerto Vallarta', 'reparación de muros Puerto Vallarta'],
   authors: [{ name: 'Ray' }],
   openGraph: {
     type: 'website',
     locale: 'es_MX',
-    title: 'Ray | Maestro Yesero en Puerto Vallarta',
-    description: 'Yeso, reparación de superficies y acabados hechos a mano en Puerto Vallarta.',
-    siteName: 'Ray — Maestro Yesero',
+    title: 'Ray | Yeso & Acabados en Puerto Vallarta',
+    description: 'Yeso, reparación de superficies y acabados en Puerto Vallarta.',
+    siteName: 'Ray — Yeso & Acabados',
     ...(siteUrl ? { url: siteUrl } : {}),
   },
   robots: { index: true, follow: true },
@@ -29,10 +29,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const localBusiness = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'Ray — Maestro Yesero',
+    name: 'Ray — Yeso & Acabados',
     description: 'Servicios de yeso, reparación de superficies y acabados en Puerto Vallarta.',
     areaServed: tenant.serviceAreas,
-    ...(tenant.phone ? { telephone: tenant.phone } : {}),
+    ...(tenant.phone.trim() ? { telephone: tenant.phone } : {}),
     ...(siteUrl ? { url: siteUrl } : {}),
     address: {
       '@type': 'PostalAddress',
