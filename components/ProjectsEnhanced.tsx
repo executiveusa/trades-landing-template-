@@ -2,10 +2,8 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
-import { getTenant } from '@/lib/tenant'
 import { useLang } from '@/lib/lang'
 import { motion } from 'framer-motion'
-import { SlideUpView, StaggerContainer, StaggerItem } from './MotionPrimitives'
 
 /**
  * Enhanced Before/After Gallery
@@ -160,45 +158,6 @@ function BeforeAfterSlider() {
     </motion.div>
   )
 }
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="flex gap-1.5">
-              <motion.div
-                className="w-0.5 h-5 bg-brand-accent rounded-full"
-                animate={{ x: isDragging ? -3 : 0 }}
-              />
-              <motion.div
-                className="w-0.5 h-5 bg-brand-accent rounded-full"
-                animate={{ x: isDragging ? 3 : 0 }}
-              />
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Labels -Mobile-friendly positioning */}
-        <motion.p
-          className="absolute bottom-4 left-4 text-white text-xs md:text-sm font-bold bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-lg pointer-events-none"
-          animate={{ opacity: sliderPosition > 20 ? 1 : 0.5 }}
-        >
-          {isMobile ? '📷' : '📷 Before'}
-        </motion.p>
-        <motion.p
-          className="absolute bottom-4 right-4 text-white text-xs md:text-sm font-bold bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-lg pointer-events-none"
-          animate={{ opacity: sliderPosition < 80 ? 1 : 0.5 }}
-        >
-          {isMobile ? '📸' : '📸 After'}
-        </motion.p>
-
-        {/* Mobile helper text */}
-        {isMobile && (
-          <motion.div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs bg-black/30 px-3 py-1 rounded pointer-events-none" >
-            Drag to compare
-          </motion.div>
-        )}
-      </div>
-    </SlideUpView>
-  )
-}
 
 /**
  * Project card with hover and slide-in effects
@@ -227,7 +186,6 @@ function ProjectCard({ title, description, index }: { title: string; description
 }
 
 export default function Projects() {
-  const tenant = getTenant()
   const { lang } = useLang()
 
   const projectsData = [

@@ -1,6 +1,5 @@
 'use client'
 
-import { getTenant } from '@/lib/tenant'
 import { useLang } from '@/lib/lang'
 import { motion } from 'framer-motion'
 import { SlideUpView, StaggerContainer, StaggerItem } from './MotionPrimitives'
@@ -51,7 +50,6 @@ function TestimonialCard({ testimonial }: { testimonial: TestimonialItem }) {
 }
 
 export default function Testimonials() {
-  const tenant = getTenant()
   const { lang } = useLang()
 
   const testimonials: TestimonialItem[] = [

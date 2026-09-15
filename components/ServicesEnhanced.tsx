@@ -1,6 +1,5 @@
 'use client'
 
-import { getTenant } from '@/lib/tenant'
 import { useLang } from '@/lib/lang'
 import { motion } from 'framer-motion'
 import { SlideUpView, StaggerContainer, StaggerItem } from './MotionPrimitives'
@@ -17,7 +16,7 @@ interface ServiceItem {
   description: string
 }
 
-function ServiceCard({ service, delay }: { service: ServiceItem; delay?: number }) {
+function ServiceCard({ service }: { service: ServiceItem }) {
   return (
     <StaggerItem>
       <motion.div
@@ -53,7 +52,6 @@ function ServiceCard({ service, delay }: { service: ServiceItem; delay?: number 
 }
 
 export default function Services() {
-  const tenant = getTenant()
   const { lang } = useLang()
 
   const services: ServiceItem[] = [
@@ -128,7 +126,7 @@ export default function Services() {
         <StaggerContainer delay={0.1}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {services.map((service, index) => (
-              <ServiceCard key={index} service={service} delay={index * 0.1} />
+              <ServiceCard key={index} service={service} />
             ))}
           </div>
         </StaggerContainer>

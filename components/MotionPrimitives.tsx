@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
 
 /**
@@ -109,7 +109,7 @@ export function StaggerItem({ children }: { children: ReactNode }) {
 }
 
 // Smooth number counter animation
-export function CounterAnimation({ value, duration = 2 }: { value: number; duration?: number }) {
+export function CounterAnimation({ value }: { value: number; duration?: number }) {
   return (
     <motion.span>
       {value}
