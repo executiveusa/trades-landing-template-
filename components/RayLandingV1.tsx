@@ -1,12 +1,12 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { CSSProperties, FormEvent, useState } from 'react'
 import styles from './RayLandingV1.module.css'
 
 const heroMedia = {
   mobile: '/ray-hero-mobile.jpg',
   desktop: '/ray-hero-desktop.jpg',
-  mobilePosition: '58% center',
+  mobilePosition: 'center center',
   desktopPosition: 'center center',
 }
 
@@ -37,6 +37,11 @@ export default function RayLandingV1() {
     window.open(whatsappHref(`Hola Ray, quisiera una cotización.\nZona: ${zona}\nTrabajo: ${trabajo}`), '_blank', 'noopener,noreferrer')
   }
 
+  const heroImageStyle = {
+    '--mobile-position': heroMedia.mobilePosition,
+    '--desktop-position': heroMedia.desktopPosition,
+  } as CSSProperties
+
   return (
     <main className={styles.page}>
       <nav className={styles.nav}>
@@ -57,10 +62,10 @@ export default function RayLandingV1() {
             src={heroMedia.mobile}
             alt="Trabajo de yeso y acabados"
             className={styles.heroImage}
-            style={{ objectPosition: heroMedia.mobilePosition }}
+            style={heroImageStyle}
           />
+          <div className={styles.heroOverlay} />
         </picture>
-        <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
           <div className={styles.kicker}>Ray · Puerto Vallarta</div>
           <h1>Yeso y acabados</h1>
