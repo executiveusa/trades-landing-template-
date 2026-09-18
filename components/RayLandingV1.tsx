@@ -57,6 +57,8 @@ export default function RayLandingV1() {
             src={heroMedia.mobile}
             alt="Ray trabajando en una obra en Puerto Vallarta"
             className={styles.heroImage}
+            width={720}
+            height={1280}
             loading="eager"
             fetchPriority="high"
             decoding="async"
