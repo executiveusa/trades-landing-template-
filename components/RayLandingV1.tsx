@@ -4,7 +4,7 @@ import { CSSProperties, FormEvent, useState } from 'react'
 import styles from './RayLandingV1.module.css'
 
 const heroMedia = {
-  mobile: '/ray-hero-mobile.jpg',
+  mobile: '/cuba-hero.jpg',
   desktop: '/ray-hero-desktop.jpg',
   mobilePosition: 'center center',
   desktopPosition: 'center center',
