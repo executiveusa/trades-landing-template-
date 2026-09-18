@@ -1,3 +1,4 @@
+// Ray Collins v1 landing-page metadata
 import RayLandingV1 from '@/components/RayLandingV1'
 
 export async function generateMetadata() {
