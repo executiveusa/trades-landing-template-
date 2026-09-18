@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { getTenant } from '@/lib/tenant'
-import ClientLangProvider from '@/components/ClientLangProvider'
 import './globals.css'
 
 const tenant = getTenant()
@@ -11,14 +10,14 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: 'Ray | Yeso & Acabados en Puerto Vallarta',
-  description: 'Yeso, reparación de superficies y acabados para casas y negocios en Puerto Vallarta.',
+  description: 'Yeso y acabados en Puerto Vallarta. Cotiza por WhatsApp.',
   keywords: ['yesero Puerto Vallarta', 'yeso Puerto Vallarta', 'acabados Puerto Vallarta', 'reparación de muros Puerto Vallarta'],
   authors: [{ name: 'Ray' }],
   openGraph: {
     type: 'website',
     locale: 'es_MX',
     title: 'Ray | Yeso & Acabados en Puerto Vallarta',
-    description: 'Yeso, reparación de superficies y acabados en Puerto Vallarta.',
+    description: 'Yeso y acabados en Puerto Vallarta. Cotiza por WhatsApp.',
     siteName: 'Ray — Yeso & Acabados',
     ...(siteUrl ? { url: siteUrl } : {}),
   },
@@ -30,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Ray — Yeso & Acabados',
-    description: 'Servicios de yeso, reparación de superficies y acabados en Puerto Vallarta.',
+    description: 'Yeso y acabados en Puerto Vallarta.',
     areaServed: tenant.serviceAreas,
     ...(tenant.phone.trim() ? { telephone: tenant.phone } : {}),
     ...(siteUrl ? { url: siteUrl } : {}),
@@ -81,9 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
         />
       </head>
-      <body className="bg-brand-bg text-brand-text antialiased">
-        <ClientLangProvider>{children}</ClientLangProvider>
-      </body>
+      <body className="bg-brand-bg text-brand-text antialiased">{children}</body>
     </html>
   )
 }
