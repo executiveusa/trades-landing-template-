@@ -9,23 +9,21 @@
   "city": "Puerto Vallarta",
   "serviceAreaTitle": "Puerto Vallarta",
   "serviceAreaTitle_en": "Puerto Vallarta",
-  "serviceAreas": [
-    "Puerto Vallarta"
-  ],
+  "serviceAreas": ["Puerto Vallarta"],
   "phone": "+52 322 304 1169",
   "facebookUrl": "",
   "whatsappNumber": "523223041169",
-  "whatsappMessage": "Hola Ray, vi tu página y quisiera una cotización. Estoy en {zona}. El trabajo es: {servicio}.",
-  "whatsappMessage_en": "Hi Ray, I saw your website and would like a quote. I'm in {zona}. The job is: {servicio}.",
+  "whatsappMessage": "Hola Ray, quisiera una cotización. Zona: {zona}. Trabajo: {servicio}.",
+  "whatsappMessage_en": "Hi Ray, I would like a quote. Area: {zona}. Work: {servicio}.",
   "hero": {
-    "h1": "Muros bien hechos para el clima de Vallarta.",
-    "h1_en": "Walls finished right for Vallarta.",
-    "subhead": "Ray realiza trabajos de yeso, reparación de superficies y acabados para casas y negocios en Puerto Vallarta.",
-    "subhead_en": "Ray handles plaster, surface repair and finishing work for homes and businesses in Puerto Vallarta.",
+    "h1": "Yeso y acabados",
+    "h1_en": "Plaster & finishes",
+    "subhead": "Puerto Vallarta",
+    "subhead_en": "Puerto Vallarta",
     "cta1": "Cotizar por WhatsApp",
     "cta1_en": "Quote on WhatsApp",
-    "cta2": "Ver trabajos",
-    "cta2_en": "See the work"
+    "cta2": "Ver trabajo",
+    "cta2_en": "See work"
   },
   "services": [],
   "projects": [],
@@ -33,17 +31,17 @@
   "contactForm": {
     "fields": [
       { "name": "zona", "label": "Zona", "label_en": "Area", "required": true },
-      { "name": "descripcion", "label": "Descripción del Trabajo", "label_en": "Work Description", "required": true }
+      { "name": "descripcion", "label": "Trabajo", "label_en": "Work", "required": true }
     ],
-    "messageSuccess": "Revisa el mensaje en WhatsApp antes de enviarlo.",
-    "messageSuccess_en": "Review the message in WhatsApp before sending it.",
+    "messageSuccess": "Revisa el mensaje antes de enviarlo.",
+    "messageSuccess_en": "Review the message before sending.",
     "messageError": "No fue posible abrir WhatsApp.",
     "messageError_en": "WhatsApp could not be opened."
   },
   "cta": {
-    "text": "¿Qué necesita tu muro?",
+    "text": "Cotización",
     "button": "Cotizar por WhatsApp",
-    "subtext": "Describe el trabajo y agrega fotos directamente en WhatsApp."
+    "subtext": "Zona + descripción."
   },
   "theme": {
     "accent": "#8a6742",
