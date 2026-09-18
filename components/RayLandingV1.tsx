@@ -4,10 +4,8 @@ import { FormEvent, useState } from 'react'
 import styles from './RayLandingV1.module.css'
 
 const heroMedia = {
-  mobile: '/ray-hero-mobile.jpg',
-  desktop: '/ray-hero-desktop.jpg',
-  mobilePosition: '58% center',
-  desktopPosition: 'center center',
+  mobile: '/ray-hero-final-mobile.avif',
+  desktop: '/ray-hero-final-desktop.avif',
 }
 
 const work = [
@@ -34,20 +32,22 @@ export default function RayLandingV1() {
     const zona = String(data.get('zona') || '').trim()
     const trabajo = String(data.get('trabajo') || '').trim()
     if (!zona || !trabajo) return
-    window.open(whatsappHref(`Hola Ray, quisiera una cotización.\nZona: ${zona}\nTrabajo: ${trabajo}`), '_blank', 'noopener,noreferrer')
+    window.open(
+      whatsappHref(`Hola Ray, quisiera una cotización.\nZona: ${zona}\nTrabajo: ${trabajo}`),
+      '_blank',
+      'noopener,noreferrer'
+    )
   }
 
   return (
     <main className={styles.page}>
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label="Navegación principal">
         <a className={styles.brand} href="#top">Ray</a>
         <div className={styles.navLinks}>
           <a href="#services">Servicios</a>
           <a href="#work">Trabajo</a>
-          <a href="#before-after">Antes / Después</a>
           <a href="#contact">Cotización</a>
         </div>
-        <a className={styles.lang} href="?lang=en">ES / EN</a>
       </nav>
 
       <header className={styles.hero} id="top">
@@ -55,18 +55,22 @@ export default function RayLandingV1() {
           <source media="(min-width: 768px)" srcSet={heroMedia.desktop} />
           <img
             src={heroMedia.mobile}
-            alt="Trabajo de yeso y acabados"
+            alt="Ray trabajando en una obra en Puerto Vallarta"
             className={styles.heroImage}
-            style={{ objectPosition: heroMedia.mobilePosition }}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
+          <span className={styles.heroOverlay} aria-hidden="true" />
         </picture>
-        <div className={styles.heroOverlay} />
+
         <div className={styles.heroContent}>
           <div className={styles.kicker}>Ray · Puerto Vallarta</div>
           <h1>Yeso y acabados</h1>
-          <p>Puerto Vallarta</p>
           <div className={styles.heroActions}>
-            <a className={styles.primaryButton} href={whatsappHref()} target="_blank" rel="noreferrer">Cotizar por WhatsApp</a>
+            <a className={styles.primaryButton} href={whatsappHref()} target="_blank" rel="noreferrer">
+              Cotizar por WhatsApp
+            </a>
             <a className={styles.secondaryButton} href="#work">Ver trabajo</a>
           </div>
         </div>
@@ -74,7 +78,7 @@ export default function RayLandingV1() {
 
       <section className={styles.section} id="services">
         <div className={styles.wrap}>
-          <div className={styles.eyebrow}>Servicios</div>
+          <h2 className={styles.sectionLabel}>Servicios</h2>
           {[
             ['Yeso y aplanados', 'Preparación y acabado de muros.'],
             ['Reparación', 'Grietas y superficies dañadas.'],
@@ -82,7 +86,7 @@ export default function RayLandingV1() {
             ['Interior / exterior', 'Casas, condominios y comercios.'],
           ].map(([title, body]) => (
             <div className={styles.serviceRow} key={title}>
-              <h2>{title}</h2>
+              <h3>{title}</h3>
               <p>{body}</p>
             </div>
           ))}
@@ -91,8 +95,7 @@ export default function RayLandingV1() {
 
       <section className={`${styles.section} ${styles.white}`} id="work">
         <div className={styles.wrap}>
-          <div className={styles.eyebrow}>Trabajo</div>
-          <h2 className={styles.sectionTitle}>Fotos de obra.</h2>
+          <h2 className={styles.sectionTitle}>Trabajo</h2>
           <div className={styles.workRail}>
             {work.map(([src, caption]) => (
               <figure className={styles.workCard} key={src}>
@@ -106,11 +109,15 @@ export default function RayLandingV1() {
 
       <section className={styles.section} id="before-after">
         <div className={styles.wrap}>
-          <div className={styles.eyebrow}>Antes / Después</div>
-          <h2 className={styles.sectionTitle}>Comparación.</h2>
+          <h2 className={styles.sectionTitle}>Antes / Después</h2>
           <div className={styles.compare}>
             <div className={styles.afterPlaceholder}>DESPUÉS — foto pendiente</div>
-            <div className={styles.beforePlaceholder} style={{ clipPath: `inset(0 ${100 - compare}% 0 0)` }}>ANTES — foto pendiente</div>
+            <div
+              className={styles.beforePlaceholder}
+              style={{ clipPath: `inset(0 ${100 - compare}% 0 0)` }}
+            >
+              ANTES — foto pendiente
+            </div>
             <div className={styles.compareLine} style={{ left: `${compare}%` }} />
             <div className={styles.compareHandle} style={{ left: `${compare}%` }}>↔</div>
             <input
@@ -139,8 +146,14 @@ export default function RayLandingV1() {
           <div className={styles.eyebrowLight}>Cotización</div>
           <h2 className={styles.sectionTitle}>Zona + descripción.</h2>
           <form onSubmit={submitQuote} className={styles.form}>
-            <label>Zona<input name="zona" required autoComplete="address-level3" /></label>
-            <label>Trabajo<textarea name="trabajo" required /></label>
+            <label>
+              Zona
+              <input name="zona" required autoComplete="address-level3" />
+            </label>
+            <label>
+              Trabajo
+              <textarea name="trabajo" required />
+            </label>
             <button type="submit">Continuar en WhatsApp</button>
             <small>Revisa el mensaje antes de enviarlo.</small>
           </form>
@@ -148,10 +161,15 @@ export default function RayLandingV1() {
       </section>
 
       <footer className={styles.footer}>
-        <div className={styles.wrap}><strong>Ray</strong><span>Yeso &amp; acabados · Puerto Vallarta</span></div>
+        <div className={styles.wrap}>
+          <strong>Ray</strong>
+          <span>Yeso &amp; acabados · Puerto Vallarta</span>
+        </div>
       </footer>
 
-      <a className={styles.mobileCta} href={whatsappHref()} target="_blank" rel="noreferrer">Cotizar por WhatsApp</a>
+      <a className={styles.mobileCta} href={whatsappHref()} target="_blank" rel="noreferrer">
+        Cotizar por WhatsApp
+      </a>
     </main>
   )
 }

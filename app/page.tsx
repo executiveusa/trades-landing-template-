@@ -1,16 +1,9 @@
 import RayLandingV1 from '@/components/RayLandingV1'
 
-export async function generateMetadata(props: any) {
-  const { searchParams } = props as any
-  const lang = typeof searchParams === 'object' && searchParams.lang === 'en' ? 'en' : 'es'
+export async function generateMetadata() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pv-plaster-landing.vercel.app'
-
-  const title = lang === 'en'
-    ? 'Ray | Plaster & Finishes in Puerto Vallarta'
-    : 'Ray | Yeso & Acabados en Puerto Vallarta'
-  const description = lang === 'en'
-    ? 'Plaster and finishes in Puerto Vallarta. Request a quote on WhatsApp.'
-    : 'Yeso y acabados en Puerto Vallarta. Cotiza por WhatsApp.'
+  const title = 'Ray | Yeso & Acabados en Puerto Vallarta'
+  const description = 'Yeso y acabados en Puerto Vallarta. Cotiza por WhatsApp.'
 
   return {
     title,
