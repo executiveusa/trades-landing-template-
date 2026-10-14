@@ -24,7 +24,7 @@ export default function Landing({ lang }: { lang: Lang }) {
         </a>
         <nav aria-label={lang === 'es' ? 'Principal' : 'Main'}>
           <a className="nav-text" href="#etapas">
-            {t.nav.stages}
+            {t.more.h2}
           </a>
           <a className="nav-text" href="#servicios">
             {t.nav.services}
@@ -80,31 +80,23 @@ export default function Landing({ lang }: { lang: Lang }) {
           <div className="wrap">
             <div className="section__head">
               <h2 id="etapas-h" className="display">
-                {t.stages.h2}
+                {t.more.h2}
               </h2>
               <p>{t.stages.intro}</p>
             </div>
-            <ol className="rail" tabIndex={0} aria-label={t.stages.h2}>
-              {t.stages.items.map((s, i) => (
+            <ul className="rail" tabIndex={0} aria-label={t.more.h2}>
+              {t.stages.items.map((s) => (
                 <li className="stage" key={s.src}>
                   <div className="stage__img">
                     <Image src={s.src} alt={s.alt} width={1204} height={1600} sizes="(min-width: 900px) 360px, 76vw" />
                   </div>
-                  <div className="meter" aria-hidden="true">
-                    {[0, 1, 2].map((n) => (
-                      <i key={n} className={n <= i ? 'on' : ''} />
-                    ))}
-                  </div>
                   <h3>
-                    <small>
-                      {lang === 'es' ? 'Etapa' : 'Stage'} {i + 1} / 3
-                    </small>
                     {s.title}
                   </h3>
                   <p>{s.caption}</p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </section>
 
@@ -129,27 +121,7 @@ export default function Landing({ lang }: { lang: Lang }) {
           </div>
         </section>
 
-        <section className="section" aria-labelledby="mas-h">
-          <div className="wrap more">
-            <div className="section__head">
-              <h2 id="mas-h" className="display">
-                {t.more.h2}
-              </h2>
-            </div>
-            <ul className="pair">
-              {t.more.items.map((m) => (
-                <li key={m.src}>
-                  <figure>
-                    <Image src={m.src} alt={m.alt} width={1204} height={1600} sizes="(min-width: 900px) 360px, 48vw" />
-                    <figcaption>{m.caption}</figcaption>
-                  </figure>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section id="cotizar" className="section on-ink" aria-labelledby="cotizar-h">
+        <section id="cotizar" className="section quote-light" aria-labelledby="cotizar-h">
           <div className="wrap quote">
             <div className="section__head">
               <h2 id="cotizar-h" className="display">

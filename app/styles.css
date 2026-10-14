@@ -107,7 +107,7 @@ a {
 }
 
 h1.display {
-  font-size: clamp(2.1rem, 8.6vw, 4.25rem);
+  font-size: clamp(1.625rem, 6.8vw, 2.6rem);
 }
 
 h2.display {
@@ -279,6 +279,7 @@ p {
 }
 
 @media (min-width: 960px) {
+  h1.display { font-size: 2rem; }
   .top .nav-text {
     display: inline-flex;
   }
@@ -366,20 +367,6 @@ p {
   height: 100%;
   object-fit: cover;
 }
-.meter {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-}
-.meter i {
-  height: 6px;
-  background: var(--rule);
-  border-radius: 1px;
-  transform-origin: left center;
-}
-.meter i.on {
-  background: var(--conduit);
-}
 .stage h3 {
   margin: 0;
   font-size: 1.25rem;
@@ -411,25 +398,6 @@ p {
     margin: 0;
     padding: 0;
     overflow: visible;
-  }
-}
-
-/* One authored moment: the stage meters fill as the section scrolls in. Content is visible without it. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .meter i.on {
-      animation: fill linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 100%;
-    }
-    @keyframes fill {
-      from {
-        transform: scaleX(0);
-      }
-      to {
-        transform: scaleX(1);
-      }
-    }
   }
 }
 
@@ -470,47 +438,6 @@ p {
   width: 28px;
   height: 28px;
   color: var(--conduit-text);
-}
-
-/* ---------- More work ---------- */
-.pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.pair figure {
-  margin: 0;
-  display: grid;
-  gap: 10px;
-}
-.pair img {
-  aspect-ratio: 3 / 4;
-  width: 100%;
-  object-fit: cover;
-  border-radius: var(--radius);
-  background: var(--rule);
-}
-.pair figcaption {
-  font-size: 0.9375rem;
-  color: var(--muted);
-}
-@media (min-width: 900px) {
-  .more {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 28px;
-    align-items: start;
-  }
-  .more .section__head {
-    margin-bottom: 0;
-  }
-  .more .pair {
-    grid-column: 2 / span 2;
-    gap: 28px;
-  }
 }
 
 /* ---------- Quote form ---------- */
@@ -746,3 +673,13 @@ textarea.input {
     transition: none;
   }
 }
+
+.quote-light .hint, .quote-light .note, .quote-light .done p { color: var(--muted); }
+.quote-light .input { border-color: var(--muted); }
+.quote-light .input[aria-invalid='true'] { border-color: var(--conduit-text); }
+.quote-light .err { color: var(--conduit-text); }
+.quote-light .chip span { border-color: var(--muted); }
+.quote-light .chip input:checked + span { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.quote-light .chip input:checked + span svg { color: var(--white); }
+.quote-light .chip input:focus-visible + span { outline-color: var(--conduit-text); }
+.quote-light .done { border-color: var(--ink); }
