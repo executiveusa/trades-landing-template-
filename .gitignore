@@ -37,3 +37,7 @@ yarn-error.log*
 # IDE
 .cursor/
 .vercel
+
+# Private brand material is kept locally, not in this public repository.
+EMERALD_TABLETS™/
+*.tsbuildinfo

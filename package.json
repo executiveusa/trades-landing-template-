@@ -1,36 +1,29 @@
 {
-  "name": "pv-plaster-landing",
-  "version": "1.0.0",
-  "description": "Premium landing template for trades workers in Puerto Vallarta",
-  "type": "module",
+  "name": "ray-yeso-pv",
+  "version": "2.0.0",
+  "description": "Lead-generation site for Ray, yeso y acabados, Puerto Vallarta",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy:agent": "tsx tools/vercel-agent/agent.ts",
-    "deploy:check": "tsx tools/vercel-agent/check-deployment.ts"
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "images": "node scripts/build-images.mjs"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.0",
-    "firecrawl": "^4.15.2",
-    "framer-motion": "^11.18.2",
-    "motion": "^11.0.0",
-    "next": "^16.3.5",
-    "postcss": "^8.5.23",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwindcss": "^3.4.0"
+    "@fontsource-variable/archivo": "^5.3.0",
+    "next": "^16.4.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "eslint": "^8.0.0",
-    "eslint-config-next": "^15.0.0",
-    "typescript": "^5.6.0",
-    "tsx": "^4.23.13",
-    "dotenv": "^16.4.5"
+    "@types/node": "^20.19.43",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
   }
 }
