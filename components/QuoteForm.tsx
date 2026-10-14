@@ -24,6 +24,7 @@ export default function QuoteForm({ lang, t }: Props) {
   const [errors, setErrors] = useState<LeadErrors>({})
   const [doneHref, setDoneHref] = useState<string | null>(null)
   const doneRef = useRef<HTMLHeadingElement>(null)
+  const submissionRef = useRef<{ payload: string; key: string } | null>(null)
 
   // Service rows elsewhere on the page pre-select the job here.
   useEffect(() => {
@@ -52,6 +53,11 @@ export default function QuoteForm({ lang, t }: Props) {
     }
     setErrors({})
 
+    const payload = JSON.stringify({ ...result.lead, website })
+    if (!submissionRef.current || submissionRef.current.payload !== payload) {
+      submissionRef.current = { payload, key: crypto.randomUUID() }
+    }
+    const key = submissionRef.current.key
     const href = whatsappHref(buildQuoteMessage(result.lead, lang))
     // Open synchronously inside the tap so mobile browsers allow it.
     window.open(href, '_blank', 'noopener,noreferrer')
@@ -59,7 +65,7 @@ export default function QuoteForm({ lang, t }: Props) {
     fetch('/api/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...result.lead, website, key: crypto.randomUUID() }),
+      body: JSON.stringify({ ...result.lead, website, key }),
       keepalive: true,
     }).catch(() => {})
     track('quote_submit', { lang, job: result.lead.trabajo })
